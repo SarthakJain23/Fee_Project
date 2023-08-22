@@ -1,0 +1,25 @@
+const postInput = document.getElementById("postInput");
+const postButton = document.getElementById("postButton");
+const postList = document.getElementById("postList");
+
+
+
+postButton.addEventListener("click", () => {
+    const postText = postInput.value;
+    if (postText.trim() !== "") {
+      const postElement = document.createElement("li");
+      postElement.className = "post";
+      postElement.textContent = postText;
+
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "deleteButton";
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => {
+        postElement.remove();
+      });
+
+      postElement.appendChild(deleteButton);
+      postList.appendChild(postElement);
+      postInput.value = "";
+    }
+  });

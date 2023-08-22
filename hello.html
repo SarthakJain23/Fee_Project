@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Social Media</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #postInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    #postButton {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #postList {
+      list-style: none;
+      padding: 0;
+    }
+    .post {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+    }
+    .deleteButton {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Social Media</h1>
+  
+  <input type="text" id="postInput" placeholder="Share something...">
+  <button id="postButton">Post</button>
+  
+  <ul id="postList"></ul>
+  
+  <script>
+    const postInput = document.getElementById("postInput");
+    const postButton = document.getElementById("postButton");
+    const postList = document.getElementById("postList");
+
+    postButton.addEventListener("click", () => {
+      const postText = postInput.value;
+      if (postText.trim() !== "") {
+        const postElement = document.createElement("li");
+        postElement.className = "post";
+        postElement.textContent = postText;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "deleteButton";
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+          postElement.remove();
+        });
+
+        postElement.appendChild(deleteButton);
+        postList.appendChild(postElement);
+        postInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
